@@ -2,7 +2,12 @@ movies = {
   rocky: 5,
   matilda: 4,
   superman: 3
-  }
+}
+
+def title_to_key
+  gets.chomp.downcase.to_sym
+end
+
 
 puts "What would you like to do:"
 puts "update, delete, add or display"
@@ -12,7 +17,7 @@ choice = gets.chomp.downcase
 case choice
   when "update"
     puts "Please enter the title of the movie"
-    title = gets.chomp.downcase.to_sym
+    title = title_to_key
     if movies[title] == nil
       puts "That movie is not in your library"
     else
@@ -20,10 +25,11 @@ case choice
       rating = gets.chomp.to_i
       movies[title] = rating.to_i
       puts "#{title.capitalize} has a new rating of #{rating}"
+      p movies
     end
   when "delete"
     puts "Please enter the title of the movie you would like to delete"
-    title = gets.chomp.downcase.to_sym
+    title = title_to_key
     if movies[title] == nil
       puts "That movie is not in your library"
     else
@@ -33,7 +39,7 @@ case choice
     end
   when "add"
     puts "Please enter the title of the movie"
-    title = gets.chomp.downcase.to_sym
+    title = title_to_key
     if movies[title] == nil
       puts "What is the rating of the movie?"
       rating = gets.chomp.to_i
